@@ -11,7 +11,9 @@ class NumberlistBloc extends Bloc<NumberlistEvent, NumberlistState> {
     on<ListUpdatedEvent>((event, emit) {
       try {
         print('Inside try Block');
+        UpdateTheList.toUpdateTheList();
         emit(NumberlistUpdatedState(UpdateTheList.numbersList));
+        print('state emitted');
       } catch (e) {
         print('catch');
         emit(NumberErrorState(errorMessage: e.toString()));

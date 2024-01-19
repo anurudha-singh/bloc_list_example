@@ -33,7 +33,7 @@ class _FirstaScreenState extends State<FirstScreen> {
         ),
         body: BlocBuilder<NumberlistBloc, NumberlistState>(
           builder: (context, state) {
-            print('Current state is ${state}');
+            print('Current state is ${state} ****');
             return Center(
               child: Column(children: [
                 SizedBox(height: MediaQuery.of(context).size.height * 25 / 100),
@@ -48,20 +48,22 @@ class _FirstaScreenState extends State<FirstScreen> {
                 ElevatedButton(
                     onPressed: () {
                       print('clicked');
-                      UpdateTheList.toUpdateTheList();
+
+                      context.read<NumberlistBloc>().add(ListUpdatedEvent());
                     },
                     child: const Text('Add')),
-                // Expanded(
-                //   child: ListView.builder(itemBuilder: (
-                //     BuildContext context,
-                //     int index,
-                //   ) {
-                //     return Text(
-                //       'First screen',
-                //       style: const TextStyle(fontSize: 25),
-                //     );
-                //   }),
-                // ),
+                // if (state is NumberlistUpdatedState)
+                //   Expanded(
+                //     child: ListView.builder(itemBuilder: (
+                //       BuildContext context,
+                //       int index,
+                //     ) {
+                //       return Text(
+                //         state.numbersList[index].toString(),
+                //         style: const TextStyle(fontSize: 25),
+                //       );
+                //     }),
+                //   ),
                 SizedBox(
                   height: 300,
                 ),
